@@ -1,6 +1,6 @@
 section .data
-    hello db 'Hello, World!',0        ; Null-terminated string
-    hello_len equ $-hello             ; String length
+    buffer db 'Hello, World!',0        ; Null-terminated string
+    buffer_len equ $-hello             ; String length
 
 section .bss
 
@@ -11,8 +11,8 @@ _start:
     ; Write "Hello, World!" to stdout
     mov rax, 1                       ; System call number for sys_write
     mov rdi, 1                       ; File descriptor for stdout
-    mov rsi, hello                   ; Address of the string
-    mov rdx, hello_len               ; Number of bytes to write
+    mov rsi, buffer                   ; Address of the string
+    mov rdx, buffer_len               ; Number of bytes to write
     syscall                          ; Call kernel
 
     ; Exit the program
